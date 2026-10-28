@@ -26,7 +26,7 @@
         <button onclick="mainMenu()" class="mainMenu" id="mainMenu">Main menu</button>
     </div>
     <div id="problem2">
-        <img id="water" src="/images.jpg">
+        <img id="water" src="./images.jpg">
         <button onclick="mainMenu()" class="mainMenu" id="mainMenu1">Main menu</button>
         <h2 id="choose">Please choose the liquid:</h2>
         <button class="buttonclass" id="nuoc" onclick="nuoc()">Water</button>
@@ -38,11 +38,11 @@
             <button class="buttonclass" id="floatbutton" onclick="otherstate('float')">Float</button>
             <button class="buttonclass" id="sinkbutton" onclick="otherstate('sink')">Sink</button>
         </div>
-        <img id="vat" src="/vat.png">
+        <img id="vat" src="./vat.png">
     </div>
     <div id="problem3">
         <button onclick="mainMenu()" class="mainMenu" id="mainMenu2">Main menu</button>
-        <img id="hinhvuong" src="/hinhvuong.png">
+        <img id="hinhvuong" src="./hinhvuong.png">
         <label id="nhan1" for="idealgas1"><strong>Pressure</strong></label>
         <label id="nhan2" for="idealgas2"><strong>Volume</strong></label>
         <input type="range" min="1" max="10" step="1" id="idealgas1" oninput="calculateidealgas()">
@@ -50,13 +50,13 @@
         <h2 id="pressuretext">Pressure:</h2>
         <h2 id="volumetext">Volume:</h2>
         <h2 id="temperaturetext">Temperature:</h2>
-        <img class="hinh" id="chondongho" onclick="choosedongho()" src="/Dongho.jpg">
-        <img class="hinh" id="chonnhietke" onclick="choosenhietke()" src="/nhietke.jpg">
-        <img class="hinh" id="chonhop" onclick="choosehop()" src="/hinhvuong.png">
+        <img class="hinh" id="chondongho" onclick="choosedongho()" src="./Dongho.jpg">
+        <img class="hinh" id="chonnhietke" onclick="choosenhietke()" src="./nhietke.jpg">
+        <img class="hinh" id="chonhop" onclick="choosehop()" src="./hinhvuong.png">
     </div>
     <div id="problem4">
-        <img id="vatdaodong" src="/hinhvuong.png">
-        <img id="loxo" src="/loxo.jpg">
+        <img id="vatdaodong" src="./hinhvuong.png">
+        <img id="loxo" src="./loxo.jpg">
         <label id="nhanpha" for="chinhphabandau"><strong>Choose your object's start point</strong></label>
         <input type="range" min="2" max="90" step="1" id="chinhphabandau" oninput="chinhpha()">
         <input type="number" id="oscillationdata" placeholder="Enter your object's angular speed min:1rad/s">
@@ -458,7 +458,7 @@
         if (landau == false) {
             for (let i = 0; i <= 100; i++) {
                 let phantusong = document.createElement("img");
-                phantusong.setAttribute("src", "/bong.png");
+                phantusong.setAttribute("src", "./bong.png");
                 phantusong.id = "phantusong" + i;
                 phantusong.style.position = "absolute";
                 phantusong.style.left = i+"%";
