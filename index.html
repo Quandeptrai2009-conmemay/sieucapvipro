@@ -1,0 +1,916 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Physic class</title>
+</head>
+<body id="body">
+    <div id="main">
+        <h1>Welcome, please choose the physic problem that you are interested in</h1>
+        <img class="hinh" id="hinh1" src="./nemxien.png">
+        <img class="hinh" id="hinh2" src="./acsimet.png">
+        <img class="hinh" id="hinh3" src="./hinh3.jpg">
+        <img class="hinh" id="hinh4" src="/daodongconlacloxo.jpg">
+        <img class="hinh" id="hinh5" src="/song.png">
+    </div>
+    <div id="problem1">
+        <img id="ground" src="./ground.webp">
+        <img id="ground1" src="./ground.webp">
+        <img id="ground2" src="./ground.webp">
+        <img id="cannon" src="./cannon.webp">
+        <img id="bullet" src="./bullet.png">
+        <div id="popup">
+        </div>
+        <input type="number" id="goc" placeholder="Enter the angle of the cannon max: 90">
+        <button onclick="mainMenu()" class="mainMenu" id="mainMenu">Main menu</button>
+    </div>
+    <div id="problem2">
+        <img id="water" src="/images.jpg">
+        <button onclick="mainMenu()" class="mainMenu" id="mainMenu1">Main menu</button>
+        <h2 id="choose">Please choose the liquid:</h2>
+        <button class="buttonclass" id="nuoc" onclick="nuoc()">Water</button>
+        <button class="buttonclass" id="thuyngan" onclick="thuyngan()">Mercury</button>
+        <button class="buttonclass" id="dau" onclick="dau()">Oil</button>
+        <input type="number" id="mass" placeholder="Enter the mass of the object(ton)">
+        <div id="controlboard">
+            <h2 id="keep">Do you want to automatically <br> change your object state in the liquid?</h2>
+            <button class="buttonclass" id="floatbutton" onclick="otherstate('float')">Float</button>
+            <button class="buttonclass" id="sinkbutton" onclick="otherstate('sink')">Sink</button>
+        </div>
+        <img id="vat" src="/vat.png">
+    </div>
+    <div id="problem3">
+        <button onclick="mainMenu()" class="mainMenu" id="mainMenu2">Main menu</button>
+        <img id="hinhvuong" src="/hinhvuong.png">
+        <label id="nhan1" for="idealgas1"><strong>Pressure</strong></label>
+        <label id="nhan2" for="idealgas2"><strong>Volume</strong></label>
+        <input type="range" min="1" max="10" step="1" id="idealgas1" oninput="calculateidealgas()">
+        <input type="range" min="1" max="10" step="1" id="idealgas2" oninput="calculateidealgas()">
+        <h2 id="pressuretext">Pressure:</h2>
+        <h2 id="volumetext">Volume:</h2>
+        <h2 id="temperaturetext">Temperature:</h2>
+        <img class="hinh" id="chondongho" onclick="choosedongho()" src="/Dongho.jpg">
+        <img class="hinh" id="chonnhietke" onclick="choosenhietke()" src="/nhietke.jpg">
+        <img class="hinh" id="chonhop" onclick="choosehop()" src="/hinhvuong.png">
+    </div>
+    <div id="problem4">
+        <img id="vatdaodong" src="/hinhvuong.png">
+        <img id="loxo" src="/loxo.jpg">
+        <label id="nhanpha" for="chinhphabandau"><strong>Choose your object's start point</strong></label>
+        <input type="range" min="2" max="90" step="1" id="chinhphabandau" oninput="chinhpha()">
+        <input type="number" id="oscillationdata" placeholder="Enter your object's angular speed min:1rad/s">
+        <button class="buttonclass" id="startoscillation" onclick="startos()">Start!</button>
+        <button onclick="mainMenu()" class="mainMenu" id="mainMenu3">Main menu</button>
+        <h2 class="thongsoproblem4" id="lido"></h2>
+        <h2 class="thongsoproblem4" id="vantoctucthoi"></h2>
+        <h2 class="thongsoproblem4" id="giatoctucthoi"></h2>
+    </div>
+    <div id="problem5">
+        <button onclick="mainMenu()" class="mainMenu" id="mainMenu4">Main menu</button>
+        <label id="nhanbiendosong" for="chinhbiendosong"><strong>Wave's amplitude</strong></label>
+        <label id="nhanbuocsong" for="chinhbuocsong"><strong>Wavelength</strong></label>
+        <label id="nhantansosong" for="chinhtansosong"><strong>Wave's frequency</strong></label>
+        <input type="range" min="1" max="30" step="1" id="chinhbiendosong" oninput="chinhsong()">
+        <input type="range" min="1" max="50" step="1" id="chinhbuocsong" oninput="chinhsong()">
+        <input type="range" min="0" max="1" step="0.1" id="chinhtansosong" oninput="chinhsong()">
+    </div>
+</body>
+
+<style>
+    #body {
+        background-color: #F4F4F4;
+        margin: 0;
+        padding: 0;
+    }
+    h1 {
+        position: absolute;
+        left: 15%;
+        color: black;
+        top: 0%;
+    }
+    #main {
+        display: block;
+    }
+    #problem1 {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #problem2 {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #problem3 {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #problem4 {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #problem5 {
+        display: none;
+        position: relative;
+        width: 100%;
+        height: 100vh;
+        overflow: hidden;
+    }
+    #hinh1 {
+        width: 20%;
+        position: absolute;
+        top: 20%;
+        left: 5%;
+    }
+    .hinh:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    #hinh2 {
+        width: 20%;
+        height: 27%;
+        position: absolute;
+        top: 20%;
+        left: 40%; 
+    }
+    #hinh3 {
+        position: absolute;
+        width: 20%;
+        left: 75%;
+        top: 20%;
+    }
+    #hinh4 {
+        position: absolute;
+        width: 20%;
+        left: 5%;
+        bottom: 20%;        
+    }
+    #hinh5 {
+        position: absolute;
+        height: 25%;
+        width: 20%;
+        left: 40%;
+        bottom: 21%;        
+    }
+    #ground {
+        position: absolute;
+        left: -33%;
+    }
+    #ground1 {
+        position: absolute;
+        left: 5%;
+    }
+    #ground2 {
+        position: absolute;
+        right: -33%;
+    }
+    #cannon {
+        position: absolute;
+        left: -1%;
+        bottom: 3%;
+        width: 5%;
+    }
+    #goc {
+        position: absolute;
+        left: 43%;
+        bottom: 50%;
+        width: 20%;
+    }
+    #bullet {
+        position: absolute;
+        left: 0%;
+        bottom: 5%;
+        width: 3%;
+        display: none;
+    }
+    #popup {
+        position: absolute;
+        left: 40%;
+        bottom: 50%;
+        display: none;
+    }
+    .mainMenu {
+        position: absolute;
+        width: 10%;
+        height: 10%;
+        color: blue;
+        background-color: yellow;
+        display: none;
+    }
+    #mainMenu1 {
+        right: 0%;
+    }
+    #mainMenu2 {
+        bottom: 0%;
+    }
+    #mainMenu4 {
+        right: 0%;
+        bottom: 12%;
+    }
+    .mainMenu:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+    }
+    #water {
+        position: absolute;
+        width: 20%;
+        left: 40%;
+        bottom: 0%;
+    }
+    #vat {
+        display: none;
+        position: absolute;
+        width: 10%;
+        left: 45%;
+        bottom: 15%;
+    }
+    #mass {
+        display: none;
+        width: 22%;
+    }
+    #keep {
+        position: absolute;
+        top: 20%;
+        left: 0%;
+    }
+    #controlboard {
+        display: none;
+    }
+    #floatbutton {
+        position: absolute;
+        top: 40%;
+        width: 15%;
+        height: 15%;
+        color: blue;
+        background-color: yellow;
+    }
+    #sinkbutton {
+        position: absolute;
+        top: 40%;
+        width: 15%;
+        height: 15%;
+        left: 20%;
+        color: blue;
+        background-color: yellow;
+    }
+    .buttonclass:hover {
+        transform: scale(1.1);
+    }
+    #hinhvuong {
+        position: absolute;
+        width: 10%;
+        top: 30%;
+        left: 45%;
+    }
+    #nhan1 {
+        position: absolute;
+        bottom: 5%;
+        left: 47%;
+        font-size: 120%;
+    }
+    #nhan2 {
+        position: absolute;
+        bottom: 14%;
+        left: 47%;
+        font-size: 120%;
+    }
+    #nhanbiendosong {
+        position: absolute;
+        bottom: 7%;
+        left: 45%;
+        font-size: 120%;
+    }
+    #nhanbuocsong {
+        position: absolute;
+        bottom: 7%;
+        left: 12%;
+        font-size: 120%;
+    }
+    #nhantansosong {
+        position: absolute;
+        bottom: 7%;
+        right: 9%;
+        font-size: 120%;
+    }
+    #idealgas1 {
+        position: absolute;
+        width: 30%;
+        bottom: 2%;
+        left: 35%;
+    }
+    #idealgas2 {
+        position: absolute;
+        width: 30%;
+        bottom: 10%;
+        left: 35%;
+    }
+    #chondongho {
+        position: absolute;
+        width: 5%;
+        right: 0%;
+        top: 10%;
+    }
+    #chonnhietke {
+        position: absolute;
+        width: 5%;
+        right: 0%;
+        top: 25%;
+    }
+    #chonhop {
+        position: absolute;
+        width: 5%;
+        right: 0%;
+        top: 50%;
+    }
+    #vatdaodong {
+        position: absolute;
+        width: 10%;
+        left: 47%;
+        top: 30%;
+    }
+    #loxo {
+        position: absolute;
+        top: 22%;
+        height: 40%;
+        left: -10%;
+        width: 69%;
+        z-index: -1;
+    }
+    #chinhphabandau {
+        position: absolute;
+        width: 30%;
+        bottom: 2%;
+        left: 35%;
+    }
+    #chinhbiendosong {
+        position: absolute;
+        width: 30%;
+        bottom: 2%;
+        left: 35%;
+    }
+    #chinhbuocsong {
+        position: absolute;
+        width: 30%;
+        bottom: 2%;
+        left: 0%;
+    }
+    #chinhtansosong {
+        position: absolute;
+        width: 30%;
+        bottom: 2%;
+        right: 0%;
+    }
+    #nhanpha {
+        position: absolute;
+        bottom: 7%;
+        left: 40%;
+        font-size: 120%;
+    }
+    #oscillationdata {
+        position: absolute;
+        width: 25%;
+        right: 7%;
+        bottom: 10%;
+    }
+    #startoscillation {
+        position: absolute;
+        width: 10%;
+        right: 22%;
+        bottom: 2%;
+    }
+    .thongsoproblem4 {
+        position: absolute;
+    }
+    #lido {
+        right: 0%;
+    }
+    #vantoctucthoi {
+        right: 0%;
+        top: 10%;
+    }
+    #giatoctucthoi {
+        right: 0%;
+        top: 20%;
+    }
+
+</style>
+
+<script>
+    const body = document.getElementById("body");
+    const hinh1 = document.getElementById("hinh1");
+    const hinh2 = document.getElementById("hinh2");
+    const hinh3 = document.getElementById("hinh3");
+    const hinh4 = document.getElementById("hinh4");
+    const hinh5 = document.getElementById("hinh5");
+    const mM = document.getElementById("mainMenu");
+    const mM1 = document.getElementById("mainMenu1");
+    const mM2 = document.getElementById("mainMenu2");
+    const mM3 = document.getElementById("mainMenu3");
+    const mM4 = document.getElementById("mainMenu4");
+    const problem1 = document.getElementById("problem1");
+    const problem2 = document.getElementById("problem2");
+    const problem3 = document.getElementById("problem3");
+    const problem4 = document.getElementById("problem4");
+    const problem5 = document.getElementById("problem5");
+    const main = document.getElementById("main");
+    const goc = document.getElementById("goc");
+    const popup = document.getElementById("popup");
+    hinh1.addEventListener("click", function() {
+        main.style.display = "none";
+        problem1.style.display = "block";
+        mM.style.display = "block";
+        goc.style.display = "block";
+    });
+    hinh2.addEventListener("click", function() {
+        main.style.display = "none";
+        problem2.style.display = "block";
+        body.style.backgroundColor = "white";
+        mM1.style.display = "block";
+        mass.style.display = "block";
+    });
+    hinh3.addEventListener("click", function() {
+        main.style.display = "none";
+        problem3.style.display = "block";
+        body.style.backgroundColor = "white";
+        mM2.style.display = "block";
+    });
+    hinh4.addEventListener("click", function() {
+        main.style.display = "none";
+        problem4.style.display = "block";
+        body.style.backgroundColor = "white";
+        mM3.style.display = "block";
+    });
+    hinh5.addEventListener("click", function() {
+        mM4.style.display = "block";
+        main.style.display = "none";
+        problem5.style.display = "block";
+        if (landau == false) {
+            for (let i = 0; i <= 100; i++) {
+                let phantusong = document.createElement("img");
+                phantusong.setAttribute("src", "/bong.png");
+                phantusong.id = "phantusong" + i;
+                phantusong.style.position = "absolute";
+                phantusong.style.left = i+"%";
+                phantusong.style.top = "30%";
+                phantusong.style.width = "1%";
+                problem5.appendChild(phantusong);
+            }
+        }
+        songdaodong();
+        landau = true;
+    });
+
+    let a, b;
+    let buoc = 1;
+goc.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        if (event.key === "Enter" && buoc == 1 && goc.value <=90) {
+            a = goc.value;
+            goc.value = "";
+            goc.placeholder = "Enter the speed of the bullet max:70m/s";
+            buoc = 2;
+        }
+        else if (event.key === "Enter" && goc.value > 90 && buoc == 1) {
+            alert("The angle of the cannon must be less than or equal to 90degree");
+        }
+        else if (event.key === "Enter" && goc.value <= 70 && buoc == 2) {
+            b = goc.value;
+            goc.value = "";
+            goc.style.display = "none";
+            goc.placeholder = "Enter the angle of the cannon max: 90";
+            rotatecannon();
+        }
+        else if (event.key === "Enter" && goc.value > 70 && buoc == 2) {
+            alert("The speed of the bullet must be less than or equal to 70m/s");
+        }
+    }
+});
+function rotatecannon() {
+    mM.style.display = "none";
+    goc.style.display = "none";
+    cannon.style.transform = `rotate(${-a}deg)`;
+    setTimeout(fire, 1000);
+}
+function fire() {
+    cannon.style.display = "none";
+    bullet.style.display = "block";
+    bullet.style.left = "0%";
+    let t = (2*b)*Math.sin(a*Math.PI/180)/9.81;
+    let x = 0;
+    let l = b**2*Math.sin(2*a*Math.PI/180)/9.81;
+    let l1 = (l/(70**2*Math.sin(2*45*Math.PI/180)/9.81))*98;
+    let vy0 = b*Math.sin(a*Math.PI/180);
+    let h1 = 0.7207;
+    let h = 0;
+    let v = 0;
+    let c = 0.01;
+    let H = (vy0**2)/(2*9.81);
+    let fall = false;
+    let interval = setInterval(function() {
+        x += (l1/t)*0.01;
+        bullet.style.left = x + "%";
+        if (fall == false) {
+            v = vy0-9.81*c;
+            h = vy0*c-0.5*9.81*(c**2);
+            c +=0.01
+            if (v<=0) {
+                fall = true;
+                c=0.01;
+            }
+        }
+        else {
+            v = 9.81*c;
+            h = H-0.5*9.81*(c**2)
+            c += 0.01;
+        }
+        bullet.style.bottom = (5 + Math.max(0, h*h1)) + "%";
+        if (x >= l1) {
+            clearInterval(interval);
+            mM.style.display = "block";
+            popup.style.display = "block";
+            popup.innerHTML = `<h2>Distance from the cannon: ${l} m</h2><h2>Max height: ${H} m</h2><h2>Time of flight: ${t} s</h2>`;
+        }
+    }, 10);
+}
+function mainMenu() {
+    stop = false;
+    buoc = 1;
+    bc = 1;
+    d = 0;
+    omega = 0;
+    phabandau = 0;
+    A = 0;
+    thoigiandaodong = 0;
+    bullet.style.left = "0%";
+    bullet.style.bottom = "5%";
+    bullet.style.display = "none";
+    cannon.style.display = "block";
+    cannon.style.transform = "rotate(0deg)";
+    for (let k = 0; k<=100; k++) {
+        clearInterval(intervalsong[k]);
+    }
+    intervalsong = [];
+    goc.value = "";
+    popup.style.display = "none";
+    problem1.style.display = "none";
+    main.style.display = "block";
+    mM.style.display = "none";
+    mM1.style.display = "none";
+    problem2.style.display = "none";
+    problem3.style.display = "none";
+    problem4.style.display = "none";
+    problem5.style.display = "none";
+    oscillationdata.style.display = "block";
+    chinhphabandau.style.display = "block";
+    nhanpha.style.display = "block";
+    startoscillation.setAttribute("onclick", "startos()");
+    startoscillation.innerHTML = "Start!";
+}
+
+let d = 0;
+let bc = 1;
+let khoiluong = 0;
+let thetich = 0;
+let fl = "false";
+let sk = "false";
+const fn = document.getElementById("floatbutton");
+const sn = document.getElementById("sinkbutton");
+const keep = document.getElementById("keep");
+const cb = document.getElementById("controlboard");
+const choose = document.getElementById("choose");
+const vat = document.getElementById("vat");
+const mass = document.getElementById("mass");
+const nc = document.getElementById("nuoc");
+const ty = document.getElementById("thuyngan");
+const du = document.getElementById("dau");
+function nuoc() {
+    d = 10000;
+    nc.style.display = "none";
+    ty.style.display = "none";
+    du.style.display = "none";
+    choose.innerHTML = "Type in..."
+    calculate();
+}
+function thuyngan() {
+    d = 136000;
+    nc.style.display = "none";
+    ty.style.display = "none";
+    du.style.display = "none";
+    choose.innerHTML = "Type in..."
+    calculate();
+}
+function dau() {
+    d = 800;
+    nc.style.display = "none";
+    ty.style.display = "none";
+    du.style.display = "none";
+    choose.innerHTML = "Type in..."
+    calculate();
+}
+function calculate() {
+    mass.style.display = "block";
+}
+mass.addEventListener("keydown", function(event) {
+        if (bc == 1) {
+            khoiluong = mass.value;
+            mass.value = "";
+            mass.placeholder = "Enter the volume of the object max:10m^3";
+            bc = 2;
+        }
+        else if (event.key === "Enter" && mass.value <=10 && bc == 2) {
+            thetich = mass.value;
+            mass.value = "";
+            mass.style.display = "none";
+            mass.placeholder = "Enter the mass of the object(ton)";
+            run();
+        }
+        else if (event.key === "Enter" && mass.value > 10 && bc == 2) {
+            alert("The volume of the object must be less than or equal to 10m^3");
+        }
+    }
+);
+
+function run() {
+    let x = (khoiluong/thetich)*10-d;
+    cb.style.display = "block";
+    keep.innerHTML = "Do you want to automatically<br>change your object state in the liquid?";
+    if (x > 0) {
+        setState("sink");
+    }
+    else if (x == 0) {
+        setState("neutral");
+    }
+    else {
+        setState("float");
+    }
+}
+function setState(state) {
+    if (state == "float") {
+        vat.style.display = "block";
+        vat.style.bottom = "50%";
+        choose.innerHTML = "Your object floats!";
+        fn.innerHTML = "Neutrally buoyant";
+        sn.innerHTML = "Sink";
+        fn.setAttribute("onclick", "otherstate('neutral')");
+        sn.setAttribute("onclick", "otherstate('sink')");
+    }
+    else if (state == "sink") {
+        vat.style.display = "block";
+        vat.style.bottom = "15%";
+        choose.innerHTML = "Your object sinks!";
+        fn.innerHTML = "Float";
+        sn.innerHTML = "Neutrally buoyant";
+        fn.setAttribute("onclick", "otherstate('float')");
+        sn.setAttribute("onclick", "otherstate('neutral')");
+    }
+    else if (state == "neutral") {
+        vat.style.display = "block";
+        vat.style.bottom = "30%";
+        choose.innerHTML = "Your object is neutrally buoyant!";
+        fn.innerHTML = "Float";
+        sn.innerHTML = "Sink";
+        fn.setAttribute("onclick", "otherstate('float')");
+        sn.setAttribute("onclick", "otherstate('sink')");
+    }
+}
+function otherstate(state) {
+    let z = prompt("Type 1 to keep the mass, 2 to keep the volume");
+    if (z !== "1" && z !== "2") {
+        alert("Please type 1 or 2.");
+        return;
+    }
+    let condition = "";
+    if (z == "1") {
+        let V = (10000*khoiluong)/d;
+        if (state == "float") {
+            condition = "Your object's volume must be greater than: " + V + "m³";
+        }
+        else if (state == "sink") {
+            condition = "Your object's volume must be smaller than: " + V + "m³";
+        }
+        else {
+            condition = "Your object's volume must be: " + V + "m³";
+        }
+    }
+    else {
+        let M = d*thetich/10000;
+        if (state == "float") {
+            condition = "Your object's mass must be smaller than: " + M + "ton";
+        }
+        else if (state == "sink") {
+            condition = "Your object's mass must be greater than: " + M + "ton";
+        }
+        else {
+            condition = "Your object's mass must be: " + M + "ton";
+        }
+    }
+    setState(state);
+    choose.innerHTML = condition;
+}
+
+const idealgas1 = document.getElementById("idealgas1");
+const idealgas2 = document.getElementById("idealgas2");
+let apsuat = 0;
+let thetichkhi = 0;
+let nhietdo = 0;
+let chooseidealgasstate = 1;
+const hinhvuong = document.getElementById("hinhvuong");
+const pressuretext = document.getElementById("pressuretext");
+const volumetext = document.getElementById("volumetext");
+const temperaturetext = document.getElementById("temperaturetext");
+const nhan1 = document.getElementById("nhan1");
+const nhan2 = document.getElementById("nhan2");
+function calculateidealgas() {
+    if (chooseidealgasstate == 1) {
+        idealgas1.setAttribute("max", "10");
+        idealgas1.setAttribute("min", "1");
+        idealgas1.setAttribute("step", "1"); 
+        apsuat = idealgas1.value/10
+        thetichkhi = idealgas2.value;
+        nhietdo = (apsuat*100000*thetichkhi)/8.31;
+        pressuretext.innerHTML = "Pressure: " + apsuat + "MPa";
+        volumetext.innerHTML = "Volume: " + thetichkhi + "m^3";
+        temperaturetext.innerHTML = "Temperature: " + nhietdo + "K";
+        hinhvuong.style.width = 10+(thetichkhi/2)+"%";
+        hinhvuong.style.top = 30-(thetichkhi/2)+"%";
+        hinhvuong.style.left = 45-(thetichkhi/4)+"%";
+        
+    }
+    else if (chooseidealgasstate == 2) {
+        idealgas1.setAttribute("max", "100");
+        idealgas1.setAttribute("min", "0");
+        idealgas1.setAttribute("step", "10");  
+        if (idealgas1.value == 0) {
+            nhietdo = idealgas1.value;
+            pressuretext.innerHTML = "Pressure: " + "Can't calculate";
+            volumetext.innerHTML = "Volume: " + "Can't calculate";
+            temperaturetext.innerHTML = "Temperature: " + nhietdo + "K";            
+        }
+        else {
+            nhietdo = idealgas1.value
+            thetichkhi = idealgas2.value;
+            apsuat = (8.31*nhietdo)/thetichkhi;
+            pressuretext.innerHTML = "Pressure: " + apsuat + "Pa";
+            volumetext.innerHTML = "Volume: " + thetichkhi + "m^3";
+            temperaturetext.innerHTML = "Temperature: " + nhietdo + "K";
+            hinhvuong.style.width = 10+(thetichkhi/2)+"%";
+            hinhvuong.style.top = 30-(thetichkhi/2)+"%";
+            hinhvuong.style.left = 45-(thetichkhi/4)+"%";
+        }     
+    }
+    else {
+        idealgas1.setAttribute("max", "100");
+        idealgas1.setAttribute("min", "0");
+        idealgas1.setAttribute("step", "10");  
+        if (idealgas1.value == 0) {
+            nhietdo = idealgas1.value;
+            pressuretext.innerHTML = "Pressure: " + "Can't calculate";
+            volumetext.innerHTML = "Volume: " + "Can't calculate";
+            temperaturetext.innerHTML = "Temperature: " + nhietdo + "K";
+        }
+        else {
+            nhietdo = idealgas1.value
+            apsuat = idealgas2.value;
+            thetichkhi = (8.31*nhietdo)/apsuat;
+            pressuretext.innerHTML = "Pressure: " + apsuat + "Pa";
+            volumetext.innerHTML = "Volume: " + thetichkhi + "m^3";
+            temperaturetext.innerHTML = "Temperature: " + nhietdo + "K";
+            hinhvuong.style.width = 10+(thetichkhi/2)+"%";
+            hinhvuong.style.top = 30-(thetichkhi/2)+"%";
+            hinhvuong.style.left = 45-(thetichkhi/4)+"%";            
+        }       
+    }
+}
+function choosenhietke() {
+    chooseidealgasstate = 1;
+    nhan1.innerHTML = "<strong>Pressure</strong>";
+    nhan2.innerHTML = "<strong>Volume</strong>";
+}
+function choosedongho() {
+    chooseidealgasstate = 2;
+    nhan1.innerHTML = "<strong>Temperature</strong>";
+    nhan2.innerHTML = "<strong>Volume</strong>";
+}
+function choosehop() {
+    chooseidealgasstate = 3;
+    nhan1.innerHTML = "<strong>Temperature</strong>";
+    nhan2.innerHTML = "<strong>Pressure</strong>";
+}
+
+const loxo = document.getElementById("loxo");
+const vatdd = document.getElementById("vatdaodong");
+const chinhphabandau = document.getElementById("chinhphabandau");
+const oscillationdata = document.getElementById("oscillationdata");
+const startoscillation = document.getElementById("startoscillation");
+const nhanpha = document.getElementById("nhanpha");
+const lido = document.getElementById("lido");
+const vantoctucthoi = document.getElementById("vantoctucthoi");
+const giatoctucthoi = document.getElementById("giatoctucthoi");
+let omega = 0;
+let phabandau = 0;
+let stop = false;
+let thoigiandaodong = 0;
+let runoscillation;
+let A = 0;
+function chinhpha() {
+    vatdd.style.left = chinhphabandau.value + "%";
+    loxo.style.width = chinhphabandau.value + "%";
+    nhanpha.innerHTML = "<strong>A = " + Math.abs(chinhphabandau.value-47) + "cm</strong>";
+    nhanpha.style.left = "47%";
+}
+oscillationdata.addEventListener("keydown", function(event) {
+    if (event.key === "Enter") {
+        if (event.key === "Enter" && oscillationdata.value > 0) {
+            omega = oscillationdata.value;
+            oscillationdata.value = "";
+            oscillationdata.style.display = "none";
+        }
+        else if (event.key === "Enter" && oscillationdata.value <= 0) {
+            alert("Your object's angular speed must be greater than 0");
+        }
+    }
+});
+function startos() {
+    if (omega == 0) {
+        alert("Please enter your object's angular speed");
+        return;
+    }
+    chinhphabandau.style.display = "none";
+    nhanpha.style.display = "none";
+    startoscillation.setAttribute("onclick", "stopos()");
+    startoscillation.innerHTML = "Stop!";
+    A = Math.abs(47-chinhphabandau.value);
+    if (chinhphabandau.value > 47) {
+        phabandau = 0;
+    }
+    else if (chinhphabandau.value < 47) {
+        phabandau = Math.PI;
+    }
+    else {
+        alert("Please choose a starting point different from 47%.");
+        return;
+    }
+        runoscillation = setInterval(function() {
+            vatdd.style.left = 47+A*Math.cos(omega*thoigiandaodong+phabandau) + "%";
+            loxo.style.width = 47+A*Math.cos(omega*thoigiandaodong+phabandau) + "%";
+            lido.innerHTML = "Displacement: " + A*Math.cos(omega*thoigiandaodong+phabandau) + "cm";
+            vantoctucthoi.innerHTML = "Velocity: " + (-omega*A*Math.sin(omega*thoigiandaodong+phabandau)) + "cm/s";
+            giatoctucthoi.innerHTML = "Acceleration: " + (-(omega**2)*A*Math.cos(omega*thoigiandaodong+phabandau)) + "cm/s<sup>2</sup>";
+            thoigiandaodong += 0.001;
+    }, 1);
+}
+function stopos() {
+    clearInterval(runoscillation);
+    startoscillation.setAttribute("onclick", "startos()");
+    startoscillation.innerHTML = "Start!";
+}
+
+let buocsong = 30;
+let biendosong = 30;
+let tansosong = 1;
+let intervalsong = [];
+let landau = false;
+const nhanbiendosong = document.getElementById("nhanbiendosong");
+const nhanbuocsong = document.getElementById("nhanbuocsong");
+const nhantansosong = document.getElementById("nhantansosong");
+const chinhbiendosong = document.getElementById("chinhbiendosong");
+const chinhbuocsong = document.getElementById("chinhbuocsong");
+const chinhtansosong = document.getElementById("chinhtansosong");
+function songdaodong() {
+    for (let j=0; j<=100; j++) {
+        let pts = document.getElementById("phantusong"+j);
+        phantusongdaodong(pts, j);
+    }
+}
+function phantusongdaodong(pts, j) {
+    let thoigiansong = 0;
+    let moiphantudaodong = setInterval(function() {
+        pts.style.top = 30 + biendosong*Math.cos(2*Math.PI*tansosong*thoigiansong+Math.PI/2 - (2*Math.PI*j)/buocsong) + "%";
+        thoigiansong += 0.01;
+    }, 10);
+    intervalsong.push(moiphantudaodong);
+}
+function chinhsong() {
+    buocsong = chinhbuocsong.value;
+    biendosong = chinhbiendosong.value;
+    tansosong = chinhtansosong.value;
+    nhanbiendosong.innerHTML = "<strong>Wave's amplitude: " + biendosong + "cm</strong>";
+    nhanbuocsong.innerHTML = "<strong>Wavelength: " + buocsong + "cm</strong>";
+    nhantansosong.innerHTML = "<strong>Wave's frequency: " + tansosong + "Hz</strong>";
+    nhanbuocsong.style.left = "10%";
+    nhanbiendosong.style.left = "42%";
+    nhantansosong.style.right = "7%";
+}
+</script>
+</html>
