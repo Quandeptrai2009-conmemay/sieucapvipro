@@ -622,7 +622,7 @@ function calculate() {
     mass.style.display = "block";
 }
 mass.addEventListener("keydown", function(event) {
-        if (bc == 1) {
+        if (event.key === "Enter" && bc == 1) {
             khoiluong = mass.value;
             mass.value = "";
             mass.placeholder = "Enter the volume of the object max:10m^3";
