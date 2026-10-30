@@ -21,6 +21,7 @@ You can change the wave's properties by dragging the slider below
 
 **WARNING:**
 You should have basic knowledge about those physics problems before exploring them
+
 Problem 1: Oblique projectile motion
 
 Problem 2: Buoyant force
