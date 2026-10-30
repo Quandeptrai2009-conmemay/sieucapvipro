@@ -1,5 +1,5 @@
 # sieucapvipro
-My website aims to help children visualize different physics problems so that they will understand more about those problems.
+**My website aims to help children visualize different physics problems so that they will understand more about those problems.**
 
 My website consist of 5 different images. Each image will lead you to a physics problem when it is clicked.
 
@@ -20,7 +20,7 @@ Problem 5:
 You can change the wave's properties by dragging the slider below
 
 **WARNING:**
-You should have basic knowledge about those physics problems before exploring them
+You should have basic knowledge about those physics problems before exploring them. You can search these physics problems online:
 
 Problem 1: Oblique projectile motion
 
