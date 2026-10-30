@@ -552,7 +552,8 @@ function mainMenu() {
     omega = 0;
     phabandau = 0;
     A = 0;
-    chinhphabandau.value = 0;
+    chinhphabandau.value = 47;
+    chinhpha();
     thoigiandaodong = 0;
     bullet.style.left = "0%";
     bullet.style.bottom = "5%";
@@ -855,6 +856,7 @@ function startos() {
         alert("Please enter your object's angular speed");
         return;
     }
+    clearInterval(runoscillation);
     chinhphabandau.style.display = "none";
     nhanpha.style.display = "none";
     startoscillation.setAttribute("onclick", "stopos()");
