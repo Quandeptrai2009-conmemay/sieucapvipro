@@ -437,7 +437,6 @@
         problem2.style.display = "block";
         body.style.backgroundColor = "white";
         mM1.style.display = "block";
-        mass.style.display = "block";
     });
     hinh3.addEventListener("click", function() {
         main.style.display = "none";
@@ -545,6 +544,8 @@ function fire() {
 }
 function mainMenu() {
     stop = false;
+    khoiluong = 0;
+    thetich = 0;
     buoc = 1;
     bc = 1;
     d = 0;
@@ -571,11 +572,17 @@ function mainMenu() {
     problem3.style.display = "none";
     problem4.style.display = "none";
     problem5.style.display = "none";
+    nc.style.display = "block";
+    ty.style.display = "block";
+    du.style.display = "block";
     oscillationdata.style.display = "block";
     chinhphabandau.style.display = "block";
+    cb.style.display = "none";
     nhanpha.style.display = "block";
     startoscillation.setAttribute("onclick", "startos()");
     startoscillation.innerHTML = "Start!";
+    choose.innerHTML = "Please choose the liquid: ";
+    mass.placeholder = "Enter the mass of the object(ton)";
 }
 
 let d = 0;
