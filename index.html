@@ -57,7 +57,7 @@
     <div id="problem4">
         <img id="vatdaodong" src="./hinhvuong.png">
         <img id="loxo" src="./loxo.jpg">
-        <label id="nhanpha" for="chinhphabandau"><strong>Choose your object's start point</strong></label>
+        <label id="nhanpha" for="chinhphabandau"><strong>Choose your object's starting point</strong></label>
         <input type="range" min="2" max="90" step="1" id="chinhphabandau" oninput="chinhpha()">
         <input type="number" id="oscillationdata" placeholder="Enter your object's angular speed min:1rad/s">
         <button class="buttonclass" id="startoscillation" onclick="startos()">Start!</button>
@@ -586,6 +586,7 @@ function mainMenu() {
     startoscillation.innerHTML = "Start!";
     choose.innerHTML = "Please choose the liquid: ";
     mass.placeholder = "Enter the mass of the object(ton)";
+    nhanpha.innerHTML = "<strong>Choose your object's starting point</strong>";
 }
 
 let d = 0;
